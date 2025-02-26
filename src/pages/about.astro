@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+<BaseLayout title="About | Ajin Thomas" description="Learn more about Ajin Thomas">
+  <div class="stack gap-20">
+    <main class="wrapper about">
+      <Hero
+        title="About"
+        tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+        align="start"
+      />
+
+      <section>
+        <h2 class="section-title">Background</h2>
+        <div class="content">
+          <p>
+            Tech-savvy and analytical individual with hands-on experience in extracting and analyzing complex datasets to support business strategy and operational efficiency. Dynamic and results-driven Data Analyst with a professional background in environmental data analysis, advanced Excel, and data visualization.
+          </p>
+          <p>
+            Strong analytical mindset with experience in developing data-driven insights and supporting sustainability initiatives. Proficient in working with cross-functional teams to implement strategies, improve operational efficiencies, and support organizational decarbonization goals.
+          </p>
+          <p>
+            I'm keen on finding a role that encourages professional growth and offers the chance to collaborate with an exceptional team.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Education</h2>
+        <div class="content">
+          <ul>
+            <li>
+              <strong>MSc Big Data Science</strong> – Queen Mary University, London (Sep 2021 – Sep 2022)
+              <div class="education-buttons">
+                <a href="/assets/transcript.pdf" download class="edu-button">
+                  Transcript
+                </a>
+                <a href="/assets/certificate.pdf" download class="edu-button">
+                  Certificate
+                </a>
+              </div>
+            </li>
+            <li>
+              <strong>BTech - Computer Science Engineering</strong> – MG University, Kottayam (May 2014 – May 2018)
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Skills</h2>
+        <div class="content">
+          <ul>
+            <li>Proficient in analytics tools such as Excel, Power BI, Tableau, and SQL.</li>
+            <li>Skilled in programming languages including SQL, Python, R, C, and C++.</li>
+            <li>Experience with SQL and MongoDB, Redshift, PostgreSQL for ETL processes.</li>
+            <li>Collaboration using MS Teams, Slack, Office 365, and Jira.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <ContactCTA />
+  </div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+			gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+
+  .education-buttons {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  .edu-button {
+    font-size: var(--text-sm);
+    padding: 0.2em 0.8em;
+    border-radius: 999rem;
+    background: var(--gradient-accent-orange);
+    color: var(--accent-text-over);
+    text-decoration: none;
+    transition: box-shadow var(--theme-transition);
+  }
+
+  .edu-button:hover {
+    box-shadow: var(--shadow-md);
+  }
+</style>

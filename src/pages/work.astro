@@ -1,0 +1,81 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import Hero from '../components/Hero.astro';
+
+const projects = (await getCollection('work')).sort(
+	(a: CollectionEntry<'work'>, b: CollectionEntry<'work'>) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout
+	title="My Work | Ajin Thomas"
+	description="Learn about Ajin Thomas's most recent projects"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="My Work"
+				tagline="See my most recent professional experiences below to get an idea of my past work."
+				align="start"
+			/>
+			<div class="gallery">
+				<ul class="work-list">
+					{projects.map((project: CollectionEntry<'work'>) => (
+						<li class="work-item">
+							<PortfolioPreview project={project} />
+						</li>
+					))}
+				</ul>
+			</div>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.gallery {
+		margin: 2rem 0;
+	}
+
+	.work-list {
+		display: flex;
+		justify-content: space-between;
+		gap: 3rem;
+		padding: 0;
+		list-style: none;
+	}
+
+	.work-item {
+		flex: 1;
+		max-width: calc(33% - 2rem);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		padding: 1rem;
+		box-shadow: var(--shadow-sm);
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+		background-color: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(5px);
+	}
+
+	@media (max-width: 50em) {
+		.work-list {
+			flex-direction: column;
+			align-items: center;
+		}
+		
+		.work-item {
+			max-width: 100%;
+			width: 100%;
+		}
+	}
+
+	.title {
+		color: var(--gray-200);
+	}
+</style>

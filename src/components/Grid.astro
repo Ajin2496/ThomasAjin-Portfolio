@@ -1,0 +1,64 @@
+---
+interface Props {
+	variant?: 'offset' | 'small' | 'work';
+	className?: string;
+}
+
+const { variant, className } = Astro.props;
+---
+
+<div class:list={['grid', variant, className]}>
+	<slot />
+</div>
+
+<style>
+	.grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.grid.offset {
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	}
+
+	.grid.work {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.grid.small {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+	}
+
+	.grid.small > :nth-child(odd) {
+		transform: translateY(1rem);
+	}
+
+	@media (max-width: 50em) {
+		.grid.work {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+		
+		.grid.work > * {
+			width: 100%;
+			max-width: 100%;
+		}
+		
+		.grid.small {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 30em) {
+		.grid.small {
+			grid-template-columns: 1fr;
+		}
+		
+		.grid.small > :nth-child(odd) {
+			transform: none;
+		}
+	}
+</style>

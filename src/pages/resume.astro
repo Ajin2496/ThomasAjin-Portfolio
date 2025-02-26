@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+	title="Resume | Ajin Thomas"
+	description="Download Ajin Thomas's resume"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<div class="hero-section">
+				<div class="hero-content">
+					<Hero
+						title="Resume"
+						tagline="Download my resume to learn more about my professional experience and qualifications."
+						align="start"
+					/>
+				</div>
+				<div class="download-buttons">
+					<a href="/assets/ajin-thomas-resume.pdf" download class="resume-button">
+							Download PDF
+					</a>
+					<a href="/assets/ajin-thomas-resume.docx" download class="resume-button">
+							Download Word
+					</a>
+				</div>
+			</div>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero-section {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+		position: relative;
+		min-height: 200px;
+	}
+
+	.hero-content {
+		flex: 1;
+		max-width: 60%;
+	}
+
+	.download-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+		width: 280px;
+		position: absolute;
+		right: 2rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.resume-button {
+		font-size: 1.3rem;
+		padding: 0.7em 1.4em;
+		border-radius: 999rem;
+		background: var(--gradient-accent-orange);
+		color: var(--accent-text-over);
+		text-decoration: none;
+		text-align: center;
+		white-space: nowrap;
+		transition: box-shadow var(--theme-transition);
+		font-weight: 500;
+	}
+
+	.resume-button:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 50em) {
+		.hero-section {
+			flex-direction: column;
+			min-height: auto;
+		}
+		
+		.download-buttons {
+			position: static;
+			width: 280px;
+			margin: 2rem auto 0;
+			transform: none;
+		}
+
+		.hero-content {
+			max-width: 100%;
+		}
+	}
+</style> 
